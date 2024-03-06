@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "task_station_integration_task_defination" {
 }
 
 data "template_file" "tsplatform-template" {
-  template = file("${path.module}/templates/piczangu.json.tpl")
+  template = file("${path.module}/templates/tsplatform.json.tpl")
 
   vars = {
     docker_image_url_django = "${var.account}.dkr.ecr.${var.region}.amazonaws.com/ts-dev-platform-service:${var.image_tag}"
@@ -62,7 +62,7 @@ resource "aws_ecs_task_definition" "task_station_platform_task_defination" {
 }
 
 data "template_file" "tsreport-tmplate" {
-  template = file("${path.module}/templates/piczangu.json.tpl")
+  template = file("${path.module}/templates/tsreport.json.tpl")
 
   vars = {
     docker_image_url_django = "${var.account}.dkr.ecr.${var.region}.amazonaws.com/ts-dev-report-service:${var.image_tag}"
