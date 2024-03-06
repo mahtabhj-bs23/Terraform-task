@@ -1,0 +1,33 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: ap-south-1
+    TAG: version-2
+    AWS_ACCOUNT: 880451881092
+    IMAGE_TAG: 1.0
+
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - wget -qO - terraform.gpg https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/terraform-archive-keyring.gpg
+      - sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/terraform-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" > /etc/apt/sources.list.d/terraform.list
+      - sudo  apt update
+      - sudo apt install terraform
+      - terraform --version
+  pre_build:
+    commands:
+      - sed -i "s/#{AWS_REGION}#/${AWS_REGION}/" variables.tf
+      - sed -i "s/#{TAG}#/${TAG}/" variables.tf
+      - sed -i "s/#{AWS_ACCOUNT}#/${AWS_ACCOUNT}/" variables.tf
+      - sed -i "s/#{IMAGE_TAG}#/${IMAGE_TAG}/" variables.tf
+
+  build:
+    commands:
+      - terraform init -input=false
+      - terraform validate
+      - terraform plan -out=tfplan -input=false
+      - terraform apply -auto-approve

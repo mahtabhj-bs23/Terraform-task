@@ -1,0 +1,17 @@
+plan.tfplan
+taskstation_aws.pub
+taskstation_aws
+terraform.tfstate.backup
+terraform.tfstate
+.terraform.lock.hcl
+.terraform
+.idea
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfplan
+*.tfout
+*.pub
+*.pem
+*.key
+*.terraform
