@@ -50,7 +50,22 @@ resource "aws_ecs_service" "ts-report-service" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "task-station-log-group" {
-  name              = "/ecs/task-station"
+resource "aws_cloudwatch_log_group" "task-station-auth-log-group" {
+  name              = "/ecs/task-station-auth"
+  retention_in_days = "3"
+}
+
+resource "aws_cloudwatch_log_group" "task-station-integration-log-group" {
+  name              = "/ecs/task-station-integration"
+  retention_in_days = "3"
+}
+
+resource "aws_cloudwatch_log_group" "task-station-platform-log-group" {
+  name              = "/ecs/task-station-platform"
+  retention_in_days = "7"
+}
+
+resource "aws_cloudwatch_log_group" "task-station-report-log-group" {
+  name              = "/ecs/task-station-report"
   retention_in_days = "7"
 }

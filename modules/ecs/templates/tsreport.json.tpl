@@ -44,7 +44,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/task-station-auth",
+        "awslogs-group": "/ecs/task-station-report",
         "awslogs-region": "${region}",
         "awslogs-stream-prefix": "task-station-auth-log-stream"
       }
