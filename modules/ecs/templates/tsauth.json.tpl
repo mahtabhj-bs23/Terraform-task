@@ -74,7 +74,7 @@
       "options": {
         "awslogs-group": "/ecs/task-station-auth",
         "awslogs-region": "${region}",
-        "awslogs-stream-prefix": "auth"
+        "awslogs-stream-prefix": "ecs"
       }
     }
   }

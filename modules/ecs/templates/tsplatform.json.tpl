@@ -102,7 +102,7 @@
       "options": {
         "awslogs-group": "/ecs/task-station-platform",
         "awslogs-region": "${region}",
-        "awslogs-stream-prefix": "platform"
+        "awslogs-stream-prefix": "ecs"
       }
     }
   }

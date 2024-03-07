@@ -174,7 +174,7 @@
       "options": {
         "awslogs-group": "/ecs/task-station-integration",
         "awslogs-region": "${region}",
-        "awslogs-stream-prefix": "integration"
+        "awslogs-stream-prefix": "ecs"
       }
     }
   }
