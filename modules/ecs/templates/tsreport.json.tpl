@@ -1,6 +1,6 @@
 [
 {
-    "name": "task-station-auth",
+    "name": "task-station-report",
     "image": "${docker_image_url_django}",
     "essential": true,
     "cpu": 256,
