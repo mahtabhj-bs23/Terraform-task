@@ -14,8 +14,8 @@ module "vpc" {
   database_subnet_group_name             = "task-station-${var.tag}-database-subnet-group"
   database_subnets                       = ["40.0.50.0/24", "40.0.51.0/24", "40.0.52.0/24"]
   create_database_subnet_group           = true
-  create_database_subnet_route_table     = false
-  create_database_internet_gateway_route = false
+  create_database_subnet_route_table     = true
+  create_database_internet_gateway_route = true
 
   tags = {
     Terraform   = "true"
