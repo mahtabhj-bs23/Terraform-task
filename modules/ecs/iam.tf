@@ -52,7 +52,7 @@ resource "aws_iam_role_policy" "ecs-service-role-policy" {
           "elasticfilesystem:ClientMount",
           "elasticfilesystem:ClientWrite",
           "elasticfilesystem:ClientRootAccess",
-          "elasticfilesystem:DescribeFileSystems"
+          "elasticfilesystem:DescribeFileSystems",
           "ssm:GetParameters"
         ],
         "Resource" : [
