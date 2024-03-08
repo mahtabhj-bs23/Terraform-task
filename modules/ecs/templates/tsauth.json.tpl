@@ -46,7 +46,7 @@
       },
       {
         "name": "SYSTEM_USER_SECRET_KEY",
-        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/auth/-system_user_secret_key"
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/auth/system_user_secret_key"
       },
       {
         "name": "POSTGRES_DB",
