@@ -37,6 +37,19 @@ resource "aws_ecs_service" "ts-integration-service" {
   }
 }
 
+resource "aws_ecs_service" "ts-integration-celery" {
+  name            = "task-station-${var.tag}-integration-celery"
+  cluster         = aws_ecs_cluster.task-station-ecs-cluster.name
+  task_definition = aws_ecs_task_definition.task_station_integration_celery_task_defination.arn
+  launch_type     = "FARGATE"
+  desired_count   = "1"
+  network_configuration {
+    subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
+    security_groups  = [aws_security_group.ecs-fargate.id]
+    assign_public_ip = true
+  }
+}
+
 resource "aws_ecs_service" "ts-report-service" {
   name            = "task-station-${var.tag}-report"
   cluster         = aws_ecs_cluster.task-station-ecs-cluster.name
@@ -57,6 +70,11 @@ resource "aws_cloudwatch_log_group" "task-station-auth-log-group" {
 
 resource "aws_cloudwatch_log_group" "task-station-integration-log-group" {
   name              = "/ecs/task-station-integration"
+  retention_in_days = "3"
+}
+
+resource "aws_cloudwatch_log_group" "task-station-integration-celery-log-group" {
+  name              = "/ecs/task-station-integration-celery"
   retention_in_days = "3"
 }
 
