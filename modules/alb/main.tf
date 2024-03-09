@@ -37,7 +37,7 @@ module "alb" {
 
 # Target group for ECS Fargate
 resource "aws_alb_target_group" "task-station-v2-auth-target-group" {
-  name        = "task-station-${var.tag}-auth-tg"
+  name        = "ts-${var.tag}-auth-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -56,7 +56,7 @@ resource "aws_alb_target_group" "task-station-v2-auth-target-group" {
 }
 
 resource "aws_alb_target_group" "task-station-v2-platform-target-group" {
-  name        = "task-station-${var.tag}-platform-tg"
+  name        = "ts-${var.tag}-platform-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -75,7 +75,7 @@ resource "aws_alb_target_group" "task-station-v2-platform-target-group" {
 }
 
 resource "aws_alb_target_group" "task-station-v2-integration-target-group" {
-  name        = "task-station-${var.tag}-integration-tg"
+  name        = "ts-${var.tag}-integration-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -94,7 +94,7 @@ resource "aws_alb_target_group" "task-station-v2-integration-target-group" {
 }
 
 resource "aws_alb_target_group" "task-station-v2-report-target-group" {
-  name        = "task-station-${var.tag}-report-tg"
+  name        = "ts-${var.tag}-report-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
