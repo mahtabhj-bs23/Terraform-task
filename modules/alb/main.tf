@@ -2,7 +2,7 @@ module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "9.5.0"
 
-  name    = "piczangu-alb"
+  name    = "task-station-${var.tag}-alb"
   vpc_id  = var.vpc_id
   subnets = var.public_subnets
 
@@ -31,13 +31,70 @@ module "alb" {
   }
 
   tags = {
-    Environment = var.environment
+    Environment = var.tag
   }
 }
 
 # Target group for ECS Fargate
-resource "aws_alb_target_group" "piczangu-target-group" {
-  name        = "${var.ecs_cluster_name}-tg"
+resource "aws_alb_target_group" "task-station-v2-auth-target-group" {
+  name        = "task-station-${var.tag}-auth-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path                = "/health"
+    port                = "8000"
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    timeout             = 20
+    interval            = 25
+    matcher             = "200"
+    protocol            = "HTTP"
+  }
+}
+
+resource "aws_alb_target_group" "task-station-v2-platform-target-group" {
+  name        = "task-station-${var.tag}-platform-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path                = "/health"
+    port                = "8000"
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    timeout             = 20
+    interval            = 25
+    matcher             = "200"
+    protocol            = "HTTP"
+  }
+}
+
+resource "aws_alb_target_group" "task-station-v2-integration-target-group" {
+  name        = "task-station-${var.tag}-integration-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path                = "/health"
+    port                = "8000"
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    timeout             = 20
+    interval            = 25
+    matcher             = "200"
+    protocol            = "HTTP"
+  }
+}
+
+resource "aws_alb_target_group" "task-station-v2-report-target-group" {
+  name        = "task-station-${var.tag}-report-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -60,7 +117,12 @@ resource "aws_alb_listener" "ecs-alb-http-listener" {
   load_balancer_arn = module.alb.arn
   port              = "80"
   protocol          = "HTTP"
-  depends_on        = [aws_alb_target_group.piczangu-target-group]
+  depends_on        = [
+    aws_alb_target_group.task-station-v2-auth-target-group,
+    aws_alb_target_group.task-station-v2-integration-target-group,
+    aws_alb_target_group.task-station-v2-platform-target-group,
+    aws_alb_target_group.task-station-v2-report-target-group
+  ]
 
 
   default_action {
@@ -80,10 +142,15 @@ resource "aws_alb_listener" "ecs-alb-https-listener" {
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
   certificate_arn   = var.alb_acm_certificate_arn
-  depends_on        = [aws_alb_target_group.piczangu-target-group]
+  depends_on        = [
+    aws_alb_target_group.task-station-v2-auth-target-group,
+    aws_alb_target_group.task-station-v2-integration-target-group,
+    aws_alb_target_group.task-station-v2-platform-target-group,
+    aws_alb_target_group.task-station-v2-report-target-group
+  ]
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.piczangu-target-group.arn
+    target_group_arn = aws_alb_target_group.task-station-v2-target-group.arn
   }
 }

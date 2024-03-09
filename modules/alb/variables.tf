@@ -1,4 +1,4 @@
-variable "environment" {
+variable "tag" {
   type = string
 }
 variable "vpc_id" {
