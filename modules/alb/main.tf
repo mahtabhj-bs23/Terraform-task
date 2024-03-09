@@ -148,6 +148,11 @@ resource "aws_alb_listener" "ecs-alb-https-listener" {
     aws_alb_target_group.task-station-v2-platform-target-group,
     aws_alb_target_group.task-station-v2-report-target-group
   ]
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group.arn
+  }
 }
 
 resource "aws_alb_listener_rule" "task-station-auth-listener-rule" {
