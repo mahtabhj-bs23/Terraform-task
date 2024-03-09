@@ -20,15 +20,15 @@ phases:
       - terraform --version
   pre_build:
     commands:
-      - sed -i "s/#{AWS_REGION}#/$AWS_REGION/" variables.tf
-      - sed -i "s/#{TAG}#/$TAG/" variables.tf
-      - sed -i "s/#{AWS_ACCOUNT}#/$AWS_ACCOUNT/" variables.tf
-      - sed -i "s/#{IMAGE_TAG}#/$IMAGE_TAG/" variables.tf
-      - sed -i "s/#{PG_NAME}#/$PG_NAME/" variables.tf
-      - sed -i "s/#{PG_USER}#/$PG_USER/" variables.tf
-      - sed -i "s/#{PG_PASSWORD}#/$PG_PASSWORD/" variables.tf
-      - sed -i "s/#{ACM_CERTIFICATE_ARN}#/$ACM_CERTIFICATE_ARN/" variables.tf
-      - sed -i "s/#{ALB_DOMAIN_NAME}#/$ALB_DOMAIN_NAME/" variables.tf
+      - sed -i "s/#{AWS_REGION}#/${AWS_REGION}/" variables.tf
+      - sed -i "s/#{TAG}#/${TAG}/" variables.tf
+      - sed -i "s/#{AWS_ACCOUNT}#/${AWS_ACCOUNT}/" variables.tf
+      - sed -i "s/#{IMAGE_TAG}#/${IMAGE_TAG}/" variables.tf
+      - sed -i "s/#{PG_NAME}#/${PG_NAME}/" variables.tf
+      - sed -i "s/#{PG_USER}#/${PG_USER}/" variables.tf
+      - sed -i "s/#{PG_PASSWORD}#/${PG_PASSWORD}/" variables.tf
+      - sed -i "s/#{ACM_CERTIFICATE_ARN}#/${ACM_CERTIFICATE_ARN}/" variables.tf
+      - sed -i "s/#{ALB_DOMAIN_NAME}#/${ALB_DOMAIN_NAME}/" variables.tf
   build:
     commands:
       - terraform init -input=false
