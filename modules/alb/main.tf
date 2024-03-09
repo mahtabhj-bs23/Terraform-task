@@ -148,9 +148,92 @@ resource "aws_alb_listener" "ecs-alb-https-listener" {
     aws_alb_target_group.task-station-v2-platform-target-group,
     aws_alb_target_group.task-station-v2-report-target-group
   ]
+}
 
-  default_action {
+resource "aws_alb_listener_rule" "task-station-auth-listener-rule" {
+  listener_arn = aws_alb_listener.ecs-alb-https-listener.arn
+  priority     = 100
+
+  action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.task-station-v2-target-group.arn
+    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/tsauth/*"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = [var.alb_domain_name]
+    }
+  }
+}
+
+resource "aws_alb_listener_rule" "task-station-platform-listener-rule" {
+  listener_arn = aws_alb_listener.ecs-alb-https-listener.arn
+  priority     = 200
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.task-station-v2-platform-target-group.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/tsplatform/*"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = [var.alb_domain_name]
+    }
+  }
+}
+
+resource "aws_alb_listener_rule" "task-station-integration-listener-rule" {
+  listener_arn = aws_alb_listener.ecs-alb-https-listener.arn
+  priority     = 300
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.task-station-v2-integration-target-group.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/tsintegration/*"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = [var.alb_domain_name]
+    }
+  }
+}
+
+resource "aws_alb_listener_rule" "task-station-report-listener-rule" {
+  listener_arn = aws_alb_listener.ecs-alb-https-listener.arn
+  priority     = 400
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.task-station-v2-report-target-group.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/tsreport/*"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = [var.alb_domain_name]
+    }
   }
 }

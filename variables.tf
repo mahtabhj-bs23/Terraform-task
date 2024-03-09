@@ -30,3 +30,13 @@ variable "pg_user" {
   type = string
   default = "#{PG_USER}#"
 }
+
+variable "alb_acm_certificate_arn" {
+  type = string
+  default = "#ACM_CERTIFICATE_ARN#"
+}
+
+variable "alb_domain_name" {
+  type = string
+  default = "#ALB_DOMAIN_NAME#"
+}

@@ -13,3 +13,6 @@ variable "ecs_cluster_name" {
 variable "alb_acm_certificate_arn" {
   type = string
 }
+variable "alb_domain_name" {
+  type = string
+}

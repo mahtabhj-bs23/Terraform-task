@@ -4,10 +4,17 @@ resource "aws_ecs_service" "ts-auth-service" {
   task_definition = aws_ecs_task_definition.task_station_auth_task_defination.arn
   launch_type     = "FARGATE"
   desired_count   = "1"
+
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = true
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.ts_auth_tg
+    container_name   = "task-station-auth"
+    container_port   = 8000
   }
 }
 
@@ -20,7 +27,13 @@ resource "aws_ecs_service" "ts-platform-service" {
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = true
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.ts_platform_tg
+    container_name   = "task-station-platform"
+    container_port   = 8000
   }
 }
 
@@ -33,7 +46,13 @@ resource "aws_ecs_service" "ts-integration-service" {
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = true
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.ts_integration_tg
+    container_name   = "task-station-integration"
+    container_port   = 8000
   }
 }
 
@@ -46,7 +65,7 @@ resource "aws_ecs_service" "ts-integration-celery" {
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = true
+    assign_public_ip = false
   }
 }
 
@@ -59,7 +78,13 @@ resource "aws_ecs_service" "ts-report-service" {
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = true
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.ts_report_tg
+    container_name   = "task-station-report"
+    container_port   = 8000
   }
 }
 

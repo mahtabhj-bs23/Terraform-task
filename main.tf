@@ -29,6 +29,16 @@ module "rds" {
   vpc_id = module.vpc.vpc_id
 }
 
+module "alb" {
+  source = "./modules/alb"
+  alb_acm_certificate_arn = var.alb_acm_certificate_arn
+  alb_domain_name = var.alb_domain_name
+  ecs_cluster_name = module.ecs.ecs_cluster_name
+  public_subnets = module.vpc.public_subnets
+  tag = var.tag
+  vpc_id = module.vpc.vpc_id
+}
+
 module "ecs" {
   source = "./modules/ecs"
   account = var.account
@@ -37,4 +47,9 @@ module "ecs" {
   region = var.region
   tag = var.tag
   vpc_id = module.vpc.vpc_id
+  alb_sg_id = module.alb.alb_sg_id
+  ts_auth_tg = module.alb.ts_auth_target_group_arn
+  ts_integration_tg = module.alb.ts_integration_target_group_arn
+  ts_platform_tg = module.alb.ts_platform_target_group_arn
+  ts_report_tg = module.alb.ts_report_target_group_arn
 }
