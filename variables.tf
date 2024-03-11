@@ -40,3 +40,13 @@ variable "alb_domain_name" {
   type = string
   default = "#{ALB_DOMAIN_NAME}#"
 }
+
+variable "clodfront_acm_certificate_arn" {
+  type = string
+  default = "#{CLOUDFRONT_CERTIFICATE_ARN}#"
+}
+
+variable "cloudfront_domain_name" {
+  type = string
+  default = "#{CLOUDFRONT_DOMAIN_NAME}#"
+}

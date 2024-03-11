@@ -53,3 +53,19 @@ module "ecs" {
   ts_platform_tg = module.alb.ts_platform_target_group_arn
   ts_report_tg = module.alb.ts_report_target_group_arn
 }
+
+module "s3" {
+  source = "./modules/s3"
+  cloudfront_origin_access_identity_iam_arns = module.cloudfront.cloudfront_origin_access_identity_iam_arns
+  tag = var.tag
+}
+
+module "cloudfront" {
+  source = "./modules/cloudfront"
+  aws_region = var.region
+  bucket_name = module.s3.bucket_name
+  bucket_regional_domain_name = module.s3.s3_bucket_bucket_regional_domain_name
+  cname = [var.cloudfront_domain_name]
+  ssl_certificate_arn = var.clodfront_acm_certificate_arn
+  tag = var.tag
+}
