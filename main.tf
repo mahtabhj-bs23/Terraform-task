@@ -69,3 +69,8 @@ module "cloudfront" {
   ssl_certificate_arn = var.clodfront_acm_certificate_arn
   tag = var.tag
 }
+
+module "sqs" {
+  source = "./modules/sqs"
+  tag    = var.tag
+}
