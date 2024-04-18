@@ -36,6 +36,6 @@ phases:
     commands:
        - terraform init -input=false
        - terraform validate
-       - terraform destroy -auto-approve
-#      - terraform plan -out=tfplan -input=false
-#      - terraform apply -auto-approve
+ #      - terraform destroy -auto-approve
+       - terraform plan -out=tfplan -input=false
+       - terraform apply -auto-approve

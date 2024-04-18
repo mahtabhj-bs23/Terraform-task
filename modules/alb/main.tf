@@ -5,6 +5,7 @@ module "alb" {
   name    = "task-station-${var.tag}-alb"
   vpc_id  = var.vpc_id
   subnets = var.public_subnets
+  enable_deletion_protection = false
 
   # Security Group
   security_group_ingress_rules = {

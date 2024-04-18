@@ -23,7 +23,7 @@ module "rds" {
   monitoring_role_use_name_prefix = true
   monitoring_role_description     = "Description for monitoring role"
   port                            = 5432
-  deletion_protection             = true
+  deletion_protection             = false
   manage_master_user_password     = false
   publicly_accessible             = true
   storage_type                    = "gp2"
