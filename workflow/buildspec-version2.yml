@@ -34,7 +34,8 @@ phases:
       - sed -i "s|#{CLOUDFRONT_DOMAIN_NAME}#|${CLOUDFRONT_DOMAIN_NAME}|" variables.tf
   build:
     commands:
-      - terraform init -input=false
-      - terraform validate
-      - terraform plan -out=tfplan -input=false
-      - terraform apply -auto-approve
+       - terraform destroy -auto-approve
+#      - terraform init -input=false
+#      - terraform validate
+#      - terraform plan -out=tfplan -input=false
+#      - terraform apply -auto-approve
