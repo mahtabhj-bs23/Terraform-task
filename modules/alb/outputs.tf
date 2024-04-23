@@ -2,7 +2,7 @@ output "alb_sg_id" {
   value = module.alb.security_group_id
 }
 output "ts_auth_target_group_arn" {
-  value = aws_alb_target_group.task-station-v2-auth-target-group.arn
+  value = aws_alb_target_group.task-station-v2-auth-target-group[0].arn
 }
 output "ts_platform_target_group_arn" {
   value = aws_alb_target_group.task-station-v2-platform-target-group.arn

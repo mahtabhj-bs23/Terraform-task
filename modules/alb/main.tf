@@ -36,9 +36,14 @@ module "alb" {
   }
 }
 
+locals {
+  target_groups = [ "green", "blue",]
+}
+
 # Target group for ECS Fargate
 resource "aws_alb_target_group" "task-station-v2-auth-target-group" {
-  name        = "ts-${var.tag}-auth-tg"
+  count = length(local.target_groups)
+  name        = "ts-${var.tag}-auth-tg-${element(local.target_groups, count.index)}"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
