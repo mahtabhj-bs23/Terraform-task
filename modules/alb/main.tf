@@ -157,7 +157,7 @@ resource "aws_alb_listener" "ecs-alb-https-listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group.arn
+    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group[0].arn
   }
 }
 
@@ -167,7 +167,7 @@ resource "aws_alb_listener_rule" "task-station-auth-listener-rule" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group.arn
+    target_group_arn = aws_alb_target_group.task-station-v2-auth-target-group[0].arn
   }
 
   condition {
