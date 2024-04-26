@@ -3,16 +3,16 @@ module "vpc" {
   version = "5.5.1"
 
   name = "task-station-${var.tag}-vpc"
-  cidr = "40.0.0.0/16"
+  cidr = "172.0.0.0/16"
 
   azs             = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
-  public_subnets  = ["40.0.101.0/24", "40.0.102.0/24", "40.0.103.0/24"]
+  public_subnets  = ["172.0.101.0/24", "172.0.102.0/24", "172.0.103.0/24"]
 
   enable_nat_gateway = false
   single_nat_gateway = false
 
   database_subnet_group_name             = "task-station-${var.tag}-database-subnet-group"
-  database_subnets                       = ["40.0.50.0/24", "40.0.51.0/24", "40.0.52.0/24"]
+  database_subnets                       = ["172.0.50.0/24", "172.0.51.0/24", "172.0.52.0/24"]
   create_database_subnet_group           = true
   create_database_subnet_route_table     = true
   create_database_internet_gateway_route = true
@@ -34,7 +34,7 @@ resource "aws_security_group" "postgres_db_sg" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["40.0.0.0/16"]
+    cidr_blocks = ["172.0.0.0/16"]
   }
 
   ingress {
