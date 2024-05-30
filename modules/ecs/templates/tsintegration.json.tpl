@@ -167,7 +167,29 @@
       {
         "name": "MICROSOFT_EVENT_URL",
         "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/microsoft_event_url"
+      },
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/aws_access_key_id"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/aws_secret_access_key"
+      },
+      {
+        "name": "AWS_SQS_REGION_NAME",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/aws_sqs_region_name"
+      },
+      {
+        "name": "SKIP_TASK_QUEUE",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/skip_task_queue"
+      },
+      {
+        "name": "SERVICE_NAME",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/service_name"
       }
+      
+      
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
