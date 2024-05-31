@@ -67,7 +67,11 @@
       {
         "name": "POSTGRES_PORT",
         "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/auth/postgres_port"
-      }
+      },
+      {
+        "name": "SYSTEM_USER_TOKEN",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/auth/system_user_token"
+      },
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
