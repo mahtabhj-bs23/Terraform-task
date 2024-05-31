@@ -95,6 +95,10 @@
       {
         "name": "GET_ALL_ACTIVE_USER",
         "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/platform/get_all_active_user"
+      },
+      {
+        "name": "SYSTEM_USER_TOKEN",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/platform/system_user_token"
       }
     ],
     "logConfiguration": {
