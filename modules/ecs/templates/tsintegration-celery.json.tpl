@@ -190,6 +190,10 @@
             {
                 "name": "SERVICE_NAME",
                 "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/service_name"
+            },
+            {
+                "name": "DS_VIEW_URL",
+                "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/integration/ds_view_url"
             }
         ],
         "logConfiguration": {
