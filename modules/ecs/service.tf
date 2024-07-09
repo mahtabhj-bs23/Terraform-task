@@ -4,10 +4,6 @@ resource "aws_ecs_service" "ts-auth-service" {
   task_definition = aws_ecs_task_definition.task_station_auth_task_defination.arn
   launch_type     = "FARGATE"
   desired_count   = "1"
-  
-  deployment_controller {
-      type = "CODE_DEPLOY"
-  }
 
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
