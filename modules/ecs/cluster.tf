@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "task-station-ecs-cluster" {
 
   setting {
     name  = "containerInsights"
-    value = "enabled"
+    value = "disabled"
   }
 }
 
