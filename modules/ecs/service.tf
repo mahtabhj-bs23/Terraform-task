@@ -65,7 +65,7 @@ resource "aws_ecs_service" "ts-integration-celery" {
   network_configuration {
     subnets          = [var.public_subnets[0], var.public_subnets[1], var.public_subnets[2]]
     security_groups  = [aws_security_group.ecs-fargate.id]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 }
 
