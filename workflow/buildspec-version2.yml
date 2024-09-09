@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_TAG: 102
+    IMAGE_TAG: 103
     TAG: version2
   parameter-store:
     PG_NAME: /taskstation/v2/auth/postgres_db
