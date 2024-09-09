@@ -99,6 +99,10 @@
       {
         "name": "SYSTEM_USER_TOKEN",
         "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/platform/system_user_token"
+      },
+      {
+        "name": "GET_MY_PROJECT_ISSUES",
+        "valueFrom": "arn:aws:ssm:ap-south-1:880451881092:parameter/taskstation/v2/platform/get_my_project_issues"
       }
     ],
     "logConfiguration": {
