@@ -89,7 +89,7 @@ resource "aws_security_group" "postgres_db_sg" {
   ingress {
     from_port   = 5432
     to_port     = 5432
-    protocol    = "-1"
+    protocol    = "tcp"
     cidr_blocks = ["103.228.202.102/32"]
     description = "Raisul Home"
   }
