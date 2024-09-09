@@ -86,6 +86,14 @@ resource "aws_security_group" "postgres_db_sg" {
     cidr_blocks = ["103.197.207.32/29"]
   }
 
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "-1"
+    cidr_blocks = ["103.228.202.102/32"]
+    description = "Raisul Home"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
